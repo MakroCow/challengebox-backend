@@ -9,32 +9,31 @@ import (
 
 var db *sql.DB
 
- func ConnectDatabase() {
- 	config := environment.Parse()
-	 psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
-		 "password=%s dbname=%s sslmode=disable",
-		 config.Host, config.Port, config.User, config.Password, config.DbName)
-	 var err error
-	 db, err = sql.Open("postgres", psqlInfo)
+func ConnectDatabase() {
+	config := environment.Parse()
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
+		"password=%s dbname=%s sslmode=disable",
+		config.Host, config.Port, config.User, config.Password, config.DbName)
+	var err error
+	db, err = sql.Open("postgres", psqlInfo)
 
-	 if err != nil {
-		 panic(err)
-	 }
-	 //defer db.Close()
+	if err != nil {
+		panic(err)
+	}
+	//defer db.Close()
 
-	 err = db.Ping()
-	 if err != nil {
-		 panic(err)
-	 }
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
 
-	 fmt.Println("Successfully connected!")
+	fmt.Println("Successfully connected!")
 
-	 distributeDBObject()
- }
+	distributeDBObject()
+}
 
-
- func distributeDBObject(){
- 	fmt.Print(db)
-	 //service.DB = db
-	 databaseService.DB = db
- }
+func distributeDBObject() {
+	fmt.Print(db)
+	//service.DB = db
+	databaseService.DB = db
+}
