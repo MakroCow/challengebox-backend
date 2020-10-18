@@ -1,10 +1,10 @@
 package service
 
 import (
+	"ChallengeBox/api"
 	"ChallengeBox/databaseService"
 	"ChallengeBox/models"
 	"database/sql"
-	"fmt"
 	"net/http"
 )
 
@@ -19,6 +19,6 @@ func getTags() *[]models.Tag {
 }
 
 func Challenges(w http.ResponseWriter, r *http.Request) {
-
-	fmt.Fprint(w, databaseService.Challenge())
+	challenges := databaseService.Challenge()
+	api.SendJson(w, challenges)
 }
