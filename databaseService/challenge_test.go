@@ -4,14 +4,9 @@ import (
 	"testing"
 )
 
-
-
-func saveTest(t *testing.T){
-
-
+func saveTest(t *testing.T) {
 
 }
-
 
 //problem: Databaseconnection. The Connector works, but if it is called from here, the path for the environmentvariable does not fit.
 /*func TestGetAll(t *testing.T){
@@ -24,4 +19,3 @@ func saveTest(t *testing.T){
 	}
 }
 */
-
