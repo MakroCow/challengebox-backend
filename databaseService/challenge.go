@@ -22,7 +22,7 @@ func SaveChallenge(challenge models.Challenge) int {
 
 func Challenge() *[]models.Challenge {
 	sqlStatement := `SELECT id, title, description, sport_value, intelligence_value, culinary_value, selfcare_value FROM challenge;`
-fmt.Println(DB)
+	fmt.Println(DB)
 	rows, err := DB.Query(sqlStatement)
 	if err != nil {
 		fmt.Println(err)

@@ -5,7 +5,6 @@ import (
 	"fmt"
 )
 
-
 func RetrieveTag(challengeId int) *[]models.Tag {
 
 	sqlStatement := `SELECT tag.id, tag.name FROM tag, tag_challenge where tag.id = tag_challenge.tag_id and challenge_id = $1`

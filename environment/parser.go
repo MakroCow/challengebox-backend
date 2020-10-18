@@ -8,17 +8,17 @@ import (
 )
 
 type Config struct {
-	Host string `yaml:"host"`
-	Port int `yaml:"port"`
-	User string `yaml:"user"`
+	Host     string `yaml:"host"`
+	Port     int    `yaml:"port"`
+	User     string `yaml:"user"`
 	Password string `yaml:"password"`
-	DbName string `yaml:"dbname"`
+	DbName   string `yaml:"dbname"`
 }
 
 var config = &Config{}
 
 func Parse() *Config {
-	if (*config != Config{}){
+	if (*config != Config{}) {
 		return config
 	} else {
 		filepath, _ := filepath.Abs("./environment/config.yaml")
@@ -28,7 +28,7 @@ func Parse() *Config {
 		}
 
 		if err := yaml.Unmarshal(configContent, config); err != nil {
-			panic (err)
+			panic(err)
 		}
 	}
 	return config
