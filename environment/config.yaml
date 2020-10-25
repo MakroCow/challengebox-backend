@@ -1,5 +1,5 @@
 host: "localhost"
-port: 5432
+port: 5000
 user: "postgres"
-password: "bisam"
-dbname: "challengedb"
+password: "secret"
+dbname: "postgres"
