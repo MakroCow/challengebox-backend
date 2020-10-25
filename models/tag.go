@@ -1,10 +1,10 @@
 package models
 
 type Tag struct {
-	id   int
-	name string
+	Id   int
+	Name string
 }
 
 func NewTag(id int, name string) *Tag {
-	return &Tag{id: id, name: name}
+	return &Tag{Id: id, Name: name}
 }

@@ -27,13 +27,12 @@ func ConnectDatabase() {
 		panic(err)
 	}
 
-	fmt.Println("Successfully connected!")
+	fmt.Println("Successfully connected to database!")
 
 	distributeDBObject()
 }
 
 func distributeDBObject() {
-	fmt.Print(db)
 	//service.DB = db
 	databaseService.DB = db
 }
