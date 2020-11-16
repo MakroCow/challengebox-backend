@@ -23,6 +23,7 @@ func main() {
 	http.HandleFunc("/challenge", service.Challenges)
 	http.HandleFunc("/tag/", service.Tag)
 	http.HandleFunc("/tag/challengeId/", service.TagById)
+	http.HandleFunc("/setup", service.Setup)
 
 	http.ListenAndServe(port, nil)
 

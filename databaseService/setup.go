@@ -1,7 +1,7 @@
 package databaseService
 
 // Runs all functions to initialize Database Tables and introduces Fake Data
-func InitializeDatabaseTables() error {
+func InitializeDatabase() error {
 	err := CreateChallengeTable()
 	if err != nil {
 		return err
@@ -37,14 +37,6 @@ func InitializeTestData() error {
 	return nil
 }
 
-func crateFakeTagChallengeConnection() error {
-	return nil
-}
-
-func createFakeTags() error {
-	return nil
-}
-
 //Creates the Tag Table in Database
 func CreateTagTable() error {
 	sqlStatement := `create table tag(
@@ -74,11 +66,11 @@ func CreateTagTable() error {
 // Creates the Tag-Challenge Table in Database
 func CreateTagChallengeTable() error {
 	sqlStatement := `create table tag_challenge(
-    id           serial  not null
-        		 constraint tag_challenge_pk
-           		 primary key,
-    challenge_id integer not null,
-    tag_id       integer not null)`
+    				 id           serial  not null
+    				     		 constraint tag_challenge_pk
+    				        		 primary key,
+    				 challenge_id integer not null,
+    				 tag_id       integer not null)`
 	_, err := DB.Exec(sqlStatement)
 	if err != nil {
 		return error(err)
@@ -101,14 +93,14 @@ func CreateTagChallengeTable() error {
 // Creates the Challenge Table in Database
 func CreateChallengeTable() error {
 	sqlStatement := `create table challenge 
-			(id serial not null constraint challenge_pk primary key, 
-			 title varchar not null, 
-			 description varchar not null, 
-			 sport_value integer not null, 
-			 intelligence_value integer not null, 
-			 culinary_value integer, 
-			 social_value integer, 
-			 selfcare_value  integer)`
+						(id serial not null constraint challenge_pk primary key, 
+						 title varchar not null, 
+						 description varchar not null, 
+						 sport_value integer not null, 
+						 intelligence_value integer not null, 
+						 culinary_value integer, 
+						 social_value integer, 
+						 selfcare_value  integer)`
 	_, err := DB.Exec(sqlStatement)
 	if err != nil {
 		return error(err)
@@ -137,6 +129,44 @@ func createFakeChallenges() error {
 					 INSERT INTO public.challenge (id, title, description, sport_value, intelligence_value, culinary_value, social_value, selfcare_value) VALUES (2, 'Tarzan Call', 'Go to an elevated area to call out a tarzan call. ', 2, 5, 0, 10, 3);
 					 INSERT INTO public.challenge (id, title, description, sport_value, intelligence_value, culinary_value, social_value, selfcare_value) VALUES (7, 'Walk', 'Go for a walk for at last 30 minutes.', 10, 2, 0, 0, 10);
 					 INSERT INTO public.challenge (id, title, description, sport_value, intelligence_value, culinary_value, social_value, selfcare_value) VALUES (6, 'Walk', 'Go for a walk for at last 15 minutes.', 5, 1, 0, 0, 5);`
+
+	_, err := DB.Exec(sqlStatement)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func createFakeTags() error {
+	sqlStatement := `INSERT INTO public.tag (id, name) VALUES (1, 'Küche');
+					 INSERT INTO public.tag (id, name) VALUES (2, 'Outdoor');
+					 INSERT INTO public.tag (id, name) VALUES (3, 'Zuhause');
+					 INSERT INTO public.tag (id, name) VALUES (4, 'Schwimmen');
+					 INSERT INTO public.tag (id, name) VALUES (5, 'Vegan');
+					 INSERT INTO public.tag (id, name) VALUES (6, 'Handwerk');
+					 INSERT INTO public.tag (id, name) VALUES (7, 'Kunst');
+					 INSERT INTO public.tag (id, name) VALUES (8, 'Mut');`
+
+	_, err := DB.Exec(sqlStatement)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func crateFakeTagChallengeConnection() error {
+	sqlStatement := `INSERT INTO public.tag_challenge (id, challenge_id, tag_id) VALUES (1, 1, 1);
+					 INSERT INTO public.tag_challenge (id, challenge_id, tag_id) VALUES (2, 1, 4);
+					 INSERT INTO public.tag_challenge (id, challenge_id, tag_id) VALUES (3, 2, 3);
+					 INSERT INTO public.tag_challenge (id, challenge_id, tag_id) VALUES (4, 2, 1);
+					 INSERT INTO public.tag_challenge (id, challenge_id, tag_id) VALUES (5, 4, 8);
+					 INSERT INTO public.tag_challenge (id, challenge_id, tag_id) VALUES (6, 4, 5);
+					 INSERT INTO public.tag_challenge (id, challenge_id, tag_id) VALUES (7, 6, 2);
+					 INSERT INTO public.tag_challenge (id, challenge_id, tag_id) VALUES (8, 2, 7);
+					 INSERT INTO public.tag_challenge (id, challenge_id, tag_id) VALUES (9, 6, 6);
+					 INSERT INTO public.tag_challenge (id, challenge_id, tag_id) VALUES (10, 3, 6);`
 
 	_, err := DB.Exec(sqlStatement)
 	if err != nil {
